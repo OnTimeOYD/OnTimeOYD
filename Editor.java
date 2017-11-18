@@ -1,5 +1,5 @@
 package OnTime;
-
+//blabla
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -10,11 +10,6 @@ public class Editor extends JFrame implements ActionListener{
     private JList editList;
     private JLabel editLabel;
     private JButton chooseButton;
-    
-    static Toolkit TK = Toolkit.getDefaultToolkit();
-    static Dimension SCREEN_SIZE = TK.getScreenSize();
-    public float screenHeight = SCREEN_SIZE.height;
-    public float screenWidth = SCREEN_SIZE.width;
     
     
     public Editor(){
@@ -37,7 +32,30 @@ public class Editor extends JFrame implements ActionListener{
         add(editorPanel, BorderLayout.CENTER);
         add(chooseButton, BorderLayout.SOUTH);
        
-        setLocation((int)(screenWidth / 2.5), (int)(screenHeight / 2.8));
+        
+        setSize(500,300);
+        setVisible(true);
+        //setIconImage(MainApp.img);
+    }
+    
+    public Editor(int day, int month, int year){
+        super("Edit event");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        editorPanel = new JPanel();
+        editorPanel.setLayout(new BorderLayout());
+        editLabel = new JLabel("Choose event:");
+        //editLabel.setAlignmentX(TOP_ALIGNMENT);    trzeba wysrodkowac
+        chooseButton = new JButton("Choose");
+        chooseButton.addActionListener(this);
+        addList();
+        JScrollPane scroller = new JScrollPane(editList);
+        editList.setVisibleRowCount(7);         
+        add(editLabel, BorderLayout.NORTH);
+        editorPanel.add(scroller);
+        add(editorPanel, BorderLayout.CENTER);
+        add(chooseButton, BorderLayout.SOUTH);
+       
+        
         setSize(500,300);
         setVisible(true);
         //setIconImage(MainApp.img);
@@ -56,8 +74,6 @@ public class Editor extends JFrame implements ActionListener{
         editList = new JList(editListModel);
         editList.setFont(new Font("Courier New", Font.PLAIN, 14));
     }
-    
-    
     public String newElement(int day, int month, int year, 
                                 int hour, int minute, String title) {
         String textLabel = "";

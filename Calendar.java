@@ -1,9 +1,9 @@
 package OnTime;
-/* HAHAHA*/
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.Date;
 
 public class Calendar extends JPanel implements ActionListener,MouseListener{
     JLabel monthName,yearNumb;
@@ -214,39 +214,10 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             FirstIndex = Last;
             return FirstIndex;
         }
-       
         
-     
         return FirstIndex;
         
     }
-    
-    enum months{
-        JANUARY(0),
-        FEBRUARY(31),
-        MARCH(59),
-        APRLI(90),
-        MAY(120),
-        JUNE(151);
-            
-        private int number;
-        
-        private months(int number) {
-            this.number = number;
-        }
-    }
-    
-    public static int GET_NAME_NR_OF_DAY(int day, int month, int year){
-        int dayNameNumb = 0; // form 0 for Monday to 6 for sunday
-        
-        
-        
-        
-        
-        return dayNameNumb;
-    }   
-       
-    
     public static int GET_LAST_INDEX(int FirstIndex, int numbOfDays){
         int LastIndex = 0;
         LastIndex = (FirstIndex + numbOfDays)%7;
@@ -281,7 +252,9 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                int datesM = dates[i].getMonth()+1;
                int datesD = dates[i].getDate();
                
-              
+
+
+               
                if(Year == datesY && Month == datesM && Day == datesD){
                    // System.out.println(datesY + " " + datesM + " "+datesD);
                            status = true;
@@ -438,5 +411,10 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             writeCalendar(monthNumb+1,YEAR,YEAR);
         }
         
+        
+        
+        
+        
+        //sfloi;htdzsoi;
     }
 }

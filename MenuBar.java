@@ -28,7 +28,7 @@ public class MenuBar extends JPanel implements ActionListener,MouseListener{
       
        
        neew.addActionListener(this);
-       edit.addActionListener(this);
+     
        file.add(neew);
        file.add(edit);
        file.addSeparator();
@@ -85,12 +85,11 @@ public class MenuBar extends JPanel implements ActionListener,MouseListener{
             NewFile.year = 0;
             new NewFile();
         }
-        
-        if(source == authors){
-            new Authors();
-        }
         if(source == edit){
             new Editor();
+        }
+        if(source == authors){
+            new Authors();
         }
         if(source == license){
             new License();
@@ -106,7 +105,6 @@ public class MenuBar extends JPanel implements ActionListener,MouseListener{
         if(source == bug){
             new BugReport();
         }
-        
     }
     public void mouseEntered(MouseEvent event){
     }

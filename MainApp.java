@@ -67,6 +67,7 @@ public class MainApp extends JFrame {
     public static void main(String[] arguments){
         mp = new MainApp();
         mp.setMinimumSize(new Dimension(800, 500));
+        new Editor();
     }
     
 
