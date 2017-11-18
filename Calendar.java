@@ -3,7 +3,7 @@ package OnTime;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Date;
+import java.util.*;
 
 public class Calendar extends JPanel implements ActionListener,MouseListener{
     JLabel monthName,yearNumb;
@@ -214,10 +214,28 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             FirstIndex = Last;
             return FirstIndex;
         }
+       
         
+     
         return FirstIndex;
         
     }
+    
+    enum months{
+            
+    }
+    
+    public static int GET_NAMENR_OF_DAY(int day, int month, int year){
+        int dayNameNumb = 0; // form 0 for Monday to 6 for sunday
+        
+        
+        
+        
+        
+        return dayNameNumb;
+    }   
+       
+    
     public static int GET_LAST_INDEX(int FirstIndex, int numbOfDays){
         int LastIndex = 0;
         LastIndex = (FirstIndex + numbOfDays)%7;
@@ -252,9 +270,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                int datesM = dates[i].getMonth()+1;
                int datesD = dates[i].getDate();
                
-
-
-               
+              
                if(Year == datesY && Month == datesM && Day == datesD){
                    // System.out.println(datesY + " " + datesM + " "+datesD);
                            status = true;
