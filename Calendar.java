@@ -222,8 +222,17 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
     }
     
     enum months{
-        sty; 
-             
+        JANUARY(0),
+        FEBRUARY(31),
+        MARCH(59),
+        APRLI(90),
+        MAY(120);
+            
+        private int number;
+        
+        private months(int number) {
+            this.number = number;
+        }
     }
     
     public static int GET_NAMENR_OF_DAY(int day, int month, int year){
