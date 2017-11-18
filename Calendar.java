@@ -226,7 +226,8 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         FEBRUARY(31),
         MARCH(59),
         APRLI(90),
-        MAY(120);
+        MAY(120),
+        JUNE(151);
             
         private int number;
         
@@ -235,7 +236,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         }
     }
     
-    public static int GET_NAMENR_OF_DAY(int day, int month, int year){
+    public static int GET_NAME_NR_OF_DAY(int day, int month, int year){
         int dayNameNumb = 0; // form 0 for Monday to 6 for sunday
         
         
