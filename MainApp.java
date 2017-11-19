@@ -8,7 +8,7 @@ package OnTime;
 * Patryk Pogorzelczyk
 * 
 * Obecna wersja:
-* Ver. 0.0.0.4
+* Ver. 0.0.0.4.5
 */
 
 import javax.swing.JFrame;
@@ -20,8 +20,6 @@ import java.awt.*;
 public class MainApp extends JFrame {
     static MainApp mp;
     static CenterContent CC = new CenterContent();
-    
-    
     
     static int RUNNED_TIME = 0;
     

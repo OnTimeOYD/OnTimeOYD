@@ -83,17 +83,12 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         setVisible(true);
     }
     
-    public int getFirstIndexOfMonth(int Month){
-        int indexToReturn = 0 ;
-        
-        return indexToReturn;
-    }
 ////////////////////////////////////////////////////////////////////////////////    
     public void writeCalendar(int Month, int Year,int Prev){
         int dayNum = 1;
         numbOfDays = GET_NUMB_OF_DAYS(Month,Year); 
         FirstIndex = GET_FIRST_INDEX(Month,Year,lastIndex);
-        lastIndex = GET_LAST_INDEX(FirstIndex,numbOfDays);
+        
         
         
        // System.out.println(lastIndex);
@@ -131,9 +126,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                     if(dayNum-1 == TODAY.getDate() && Month == TODAY.getMonth()-1 && Year==TODAY.getYear()+1900){
                         dayNumb[i].setOpaque(true);
                         dayNumb[i].setBackground(new Color(165,172,182)); 
-                        dayNumb[i].setName("Today");
-                        
-                        
+                        dayNumb[i].setName("Today");    
                     }
                     
                 } else {
@@ -198,41 +191,57 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         return DayNumb;
     }
     
+    
     public static int GET_FIRST_INDEX(int Month, int Year,int Last){
-        int FirstIndex = 6;
-        if(Month == 1 && Year == 2017) FirstIndex = 6;
-        else if(Month == 1 && Year != 2017){
-            if(LEAP_YEAR(Year-1)){
-                FirstIndex = (Last+335)%7;
-                return FirstIndex;
-            }
-            else{
-                FirstIndex = (Last+334)%7;
-                return FirstIndex;
-            }
-        }else{
-            FirstIndex = Last;
-            return FirstIndex;
-        }
-        
-        return FirstIndex;
+            int YY = (Year-1)%100;//16
+            int C = (Year-1) - YY;//2000
+            int G = YY + (YY/4);//20
+            int day = (((((C/100)%4)*5)+G)%7);//20/7
+            int dayToReturn;
+            
+            Integer[] mo = new Integer[12];
+                mo[0] = 0;
+                mo[1] = 31;
+                mo[2] = 59;
+                mo[3] = 90;
+                mo[4] = 120;
+                mo[5] = 151;
+                mo[6] = 181;
+                mo[7] = 212;
+                mo[8] = 243;
+                mo[9] = 273;
+                mo[10] = 304;
+                mo[11] = 334;
+                    
+             dayToReturn  = (day + mo[Month-1])%7;
+             if(LEAP_YEAR(Year) && Month > 2){
+                dayToReturn++;
+             }
+             return dayToReturn;
         
     }
     
-     enum months{
-          JANUARY(0),
-          FEBRUARY(31),
-          MARCH(59),
-          APRLI(90),
-          MAY(120),
-          JUNE(151);
-              
-          private int number;
-          
-         private months(int number) {
-             this.number = number;
-          }
-      }
+//     enum months{
+//        JANUARY(0),
+//        FEBRUARY(31),
+//        MARCH(59),
+//        APRLI(90),
+//        MAY(120),
+//        JUNE(151),
+//        JULY(181),
+//        AUGUST(212),
+//        SEPTEMBER(243),
+//        OCTOBER(273),
+//        NOVEMBER(304),
+//        DECEMBER(334);
+//        private int number;
+//          
+//         private months(int number) {
+//             this.number = number;
+//          }
+//      }
+     
+     
 
     public static int GET_LAST_INDEX(int FirstIndex, int numbOfDays){
         int LastIndex = 0;
@@ -337,7 +346,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                     dayNumb[i].setBackground(null);
                     dayNumb[i].setForeground(null);
                     }
-
+                dayNumb[i].setCursor(null);
                 }
                 
             }
