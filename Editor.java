@@ -6,11 +6,16 @@ import java.awt.event.*;
 
 public class Editor extends JFrame implements ActionListener{
     private JPanel editorPanel;
-    private DefaultListModel editListModel;
-    private JList editList;
+    private static DefaultListModel EDIT_LIST_MODEL;
+    private static JList EDIT_LIST;
     private JLabel editLabel;
     private JButton chooseButton;
     
+    
+    static Toolkit TK = Toolkit.getDefaultToolkit();
+    static Dimension SCREEN_SIZE = TK.getScreenSize();
+    public float screenHeight = SCREEN_SIZE.height;
+    public float screenWidth = SCREEN_SIZE.width;
     
     public Editor(){
         super("Edit event");
@@ -21,11 +26,11 @@ public class Editor extends JFrame implements ActionListener{
         //editLabel.setAlignmentX(TOP_ALIGNMENT);    trzeba wysrodkowac
         chooseButton = new JButton("Choose");
         chooseButton.addActionListener(this);
-        addList();
-        JScrollPane scroller = new JScrollPane(editList);
-        editList.setVisibleRowCount(7);
+        ADD_LIST();
+        JScrollPane scroller = new JScrollPane(EDIT_LIST);
+        EDIT_LIST.setVisibleRowCount(7);
         
-        
+        setLocation((int)(screenWidth / 2.9), (int)(screenHeight / 3.8));
                
         add(editLabel, BorderLayout.NORTH);
         editorPanel.add(scroller);
@@ -47,9 +52,12 @@ public class Editor extends JFrame implements ActionListener{
         //editLabel.setAlignmentX(TOP_ALIGNMENT);    trzeba wysrodkowac
         chooseButton = new JButton("Choose");
         chooseButton.addActionListener(this);
-        addList();
-        JScrollPane scroller = new JScrollPane(editList);
-        editList.setVisibleRowCount(7);         
+        Editor.this.ADD_LIST(day, month, year);
+        JScrollPane scroller = new JScrollPane(EDIT_LIST);
+        //editList.setVisibleRowCount(7); 
+
+        setLocation((int)(screenWidth / 2.9), (int)(screenHeight / 3.8));
+        
         add(editLabel, BorderLayout.NORTH);
         editorPanel.add(scroller);
         add(editorPanel, BorderLayout.CENTER);
@@ -61,20 +69,44 @@ public class Editor extends JFrame implements ActionListener{
         //setIconImage(MainApp.img);
     }
     
-    public void addList(){
-        editListModel = new DefaultListModel();
+    public static void ADD_LIST(){
+        EDIT_LIST_MODEL = new DefaultListModel();
         for(int i = 0; i < File.TABLE_LENGTH(); i++){
-            editListModel.addElement(newElement(File.GET_DAY(i),
+            EDIT_LIST_MODEL.addElement(INSERT(File.GET_DAY(i),
                            File.GET_MONTH(i),
                            File.GET_YEAR(i),
                            File.GET_HOUR(i),
                            File.GET_MINUTE(i),
                            File.GET_TITLE(i)));
         }
-        editList = new JList(editListModel);
-        editList.setFont(new Font("Courier New", Font.PLAIN, 14));
+        EDIT_LIST = new JList(EDIT_LIST_MODEL);
+        EDIT_LIST.setFont(new Font("Courier New", Font.PLAIN, 14));
     }
-    public String newElement(int day, int month, int year, 
+    
+    public static void ADD_LIST(int day, int month, int year){
+        EDIT_LIST_MODEL = new DefaultListModel();
+        for(int i = 0; i < File.TABLE_LENGTH(); i++){
+            if(File.GET_DAY(i) == day && File.GET_MONTH(i)== month&&
+                                File.GET_YEAR(i) == year){
+            EDIT_LIST_MODEL.addElement(INSERT(day,
+                           month,
+                           year,
+                           File.GET_HOUR(i),
+                           File.GET_MINUTE(i),
+                           File.GET_TITLE(i)));
+            }
+        }
+        EDIT_LIST = new JList(EDIT_LIST_MODEL);
+        
+        EDIT_LIST.setFont(new Font("Courier New", Font.PLAIN, 14));
+    }
+    
+    public static int SAME_DATE_LIST_COUNTER(int day, int month, int year) {
+        ADD_LIST(day, month, year);
+        return EDIT_LIST_MODEL.getSize();
+    }
+    
+    public static String INSERT(int day, int month, int year, 
                                 int hour, int minute, String title) {
         String textLabel = "";
         
@@ -107,12 +139,16 @@ public class Editor extends JFrame implements ActionListener{
         Object source = event.getSource();
         
         if(source == chooseButton){
-            //System.out.print(editList.getSelectedIndex());
-            int index = editList.getSelectedIndex();
+            System.out.print(EDIT_LIST.getSelectedIndex());
+            int index = EDIT_LIST.getSelectedIndex();
+            if (index == -1){
+                this.dispose();
+            } else {
             MainApp.CC.setVisible(true);
             CenterContent.SET_LINE(index);
             this.setVisible(false);
             MainApp.REPAINT(0);
+            }
         }
     }
 }

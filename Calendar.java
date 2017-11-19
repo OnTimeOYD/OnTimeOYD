@@ -278,11 +278,16 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                         if(block == 0 && File.GET_DAY(j)-1 == i-FirstIndex && File.GET_MONTH(j)-1== monthNumb&&
                                 File.GET_YEAR(j) == YEAR){/*
                             
-                            MainApp.CC.setVisible(true);
-                            CenterContent.SET_LINE(j);
-                            MainApp.REPAINT(0);*/
-                                new Editor();
-                                block++;
+                            */
+                            /*System.out.println(i-FirstIndex);
+                            System.out.println(monthNumb);
+                            System.out.println(YEAR);*/
+                            if(Editor.SAME_DATE_LIST_COUNTER(i-FirstIndex+1, monthNumb+1, YEAR) < 2){
+                                MainApp.CC.setVisible(true);
+                                CenterContent.SET_LINE(j);
+                                MainApp.REPAINT(0);
+                            } else new Editor(i-FirstIndex+1, monthNumb+1, YEAR);
+                            block++;
                         }   
                 }
             }
