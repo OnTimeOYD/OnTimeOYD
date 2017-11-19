@@ -28,7 +28,7 @@ public class MenuBar extends JPanel implements ActionListener,MouseListener{
       
        
        neew.addActionListener(this);
-     
+       edit.addActionListener(this);
        file.add(neew);
        file.add(edit);
        file.addSeparator();
