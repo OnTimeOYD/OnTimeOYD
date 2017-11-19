@@ -142,12 +142,13 @@ public class Editor extends JFrame implements ActionListener{
             System.out.print(EDIT_LIST.getSelectedIndex());
             int index = EDIT_LIST.getSelectedIndex();
             if (index == -1){
-                this.dispose();
+                
             } else {
             MainApp.CC.setVisible(true);
             CenterContent.SET_LINE(index);
             this.setVisible(false);
             MainApp.REPAINT(0);
+            this.dispose();
             }
         }
     }
