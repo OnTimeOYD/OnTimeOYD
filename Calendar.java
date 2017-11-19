@@ -218,6 +218,22 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         return FirstIndex;
         
     }
+    
+     enum months{
+          JANUARY(0),
+          FEBRUARY(31),
+          MARCH(59),
+          APRLI(90),
+          MAY(120),
+          JUNE(151);
+              
+          private int number;
+          
+         private months(int number) {
+             this.number = number;
+          }
+      }
+
     public static int GET_LAST_INDEX(int FirstIndex, int numbOfDays){
         int LastIndex = 0;
         LastIndex = (FirstIndex + numbOfDays)%7;
@@ -284,7 +300,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                             System.out.println(YEAR);*/
                             if(Editor.SAME_DATE_LIST_COUNTER(i-FirstIndex+1, monthNumb+1, YEAR) < 2){
                                 MainApp.CC.setVisible(true);
-                                CenterContent.SET_LINE(j);
+                                CenterContent.SET_LINE(i);
                                 MainApp.REPAINT(0);
                             } else new Editor(i-FirstIndex+1, monthNumb+1, YEAR);
                             block++;
