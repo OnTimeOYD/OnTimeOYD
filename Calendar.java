@@ -433,11 +433,6 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             getDates();            
             writeCalendar(monthNumb+1,YEAR,YEAR);
         }
-        
-        
-        
-        
-        
-        //sfloi;htdzsoi;
+
     }
 }
