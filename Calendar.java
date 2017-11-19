@@ -276,11 +276,13 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             if(source == dayNumb[i] && dayNumb[i].getName().equals("Colored")){
                 for(int j = 0; j < dayNumb.length;j++){  
                         if(block == 0 && File.GET_DAY(j)-1 == i-FirstIndex && File.GET_MONTH(j)-1== monthNumb&&
-                                File.GET_YEAR(j) == YEAR){
-                            block++;
+                                File.GET_YEAR(j) == YEAR){/*
+                            
                             MainApp.CC.setVisible(true);
                             CenterContent.SET_LINE(j);
-                            MainApp.REPAINT(0);
+                            MainApp.REPAINT(0);*/
+                                new Editor();
+                                block++;
                         }   
                 }
             }
