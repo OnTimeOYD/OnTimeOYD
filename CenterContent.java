@@ -16,7 +16,7 @@ public class CenterContent extends JPanel implements ActionListener{
     JComboBox dayDate,monthDate,yearDate,hourDate,minuteDate;
     JTextField textTitle;
     JTextArea textContent;
-    JButton save,delete;
+    JButton delete,save;
     JPanel handler;
     
     public CenterContent(){
@@ -28,23 +28,14 @@ public class CenterContent extends JPanel implements ActionListener{
         textTitle = new JTextField(TITLE);
         titlePanel.add(textTitle);
         
-        ////////////////////////////////////////////////////////////////////////
         JPanel datePanel = new JPanel();
         JLabel dateLabel = new JLabel("Date: ");
         for(int i=1;i<=YEARS.length;i++){
-            if(i<=31){
-                DAYS[i-1] = i; 
-            }
-            if(i<=12){
-                MONTHS[i-1] = i;
-            }
+            if(i<=31)DAYS[i-1] = i; 
+            if(i<=12)MONTHS[i-1] = i;
             YEARS[i-1] = 2016+i;
-            if(i<=24){
-                HOURS[i-1] = i-1;
-            }
-            if(i<=60){
-                MINUTES[i-1] = i-1;
-            }
+            if(i<=24)HOURS[i-1] = i-1;
+            if(i<=60)MINUTES[i-1] = i-1;
         }
        
         dayDate = new JComboBox(DAYS);
@@ -94,8 +85,6 @@ public class CenterContent extends JPanel implements ActionListener{
         ////////////////////////////////////////////////////////////////////////
         
         handler.add(titlePanel);
-        //titlePanel.setBorder(BorderFactory.createLineBorder(Color.gray));
-        //(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Title"));
         handler.add(datePanel);
         handler.add(timePanel);
         handler.add(contentLabelPanel);
@@ -109,9 +98,7 @@ public class CenterContent extends JPanel implements ActionListener{
         Object source = event.getSource();
         
             if(source == save){
-
             File.DELETE_OLD(LINE_NUMBER);
-            
             File.TABLE_WITH_FILE_DATA[File.TABLE_LENGTH()+1] = 
                       "@@"+yearDate.getSelectedItem()+
                       "@@"+monthDate.getSelectedItem()+
@@ -145,8 +132,5 @@ public class CenterContent extends JPanel implements ActionListener{
             MINUTE = File.GET_MINUTE(line);
             TITLE = File.GET_TITLE(line);
             CONTENT = File.GET_CONTENT(line);
-        }
-        
-        
-        
+        }    
 }

@@ -113,28 +113,20 @@ public class Editor extends JFrame implements ActionListener{
                                 int hour, int minute, String title) {
         String textLabel = "";
         
-        if(day < 10){
-                textLabel = "0"+day;
-            } else {
-                textLabel = ""+day;
-            }
-            if(month<10){
-                textLabel += "-0"+month;
-            } else{
-                textLabel += "-"+month;
-            }
-            textLabel += "-"+year;
-            if(hour <10){
-                textLabel += "  0"+hour;
-            } else {
-                textLabel += "  "+hour;
-            }
-            if(minute<10){
-                textLabel += ":0"+minute;
-            } else {
-                textLabel += ":"+minute;
-            }
-            textLabel += ", " + title;
+        if(day < 10)textLabel = "0"+day;
+            else textLabel = ""+day;
+        if(month<10)textLabel += "-0"+month;
+            else textLabel += "-"+month;
+        
+        textLabel += "-"+year;
+        
+        if(hour <10)textLabel += "  0"+hour;
+            else textLabel += "  "+hour;
+        if(minute<10) textLabel += ":0"+minute;
+            else textLabel += ":"+minute;
+        
+        textLabel += ", " + title;
+        
         return textLabel;
     }
     
@@ -142,25 +134,23 @@ public class Editor extends JFrame implements ActionListener{
         Object source = event.getSource();
         
         if(source == chooseButton){
-            //System.out.print(EDIT_LIST.getSelectedIndex());
             int index = EDIT_LIST.getSelectedIndex();
-            if (index == -1){
-               this.dispose(); 
-            } else {
-            MainApp.CC.setVisible(true);
-            int line=0;
-            for(int i=0;i<File.TABLE_LENGTH();i++){
-                if(File.GET_DAY(i) == DAY && File.GET_MONTH(i)== MONTH &&
-                                File.GET_YEAR(i) == YEAR){
-                               line = i;
-                               break;
-                }   
-            }  
-            CenterContent.SET_LINE(line + index);
-            this.dispose();
-            MainApp.REPAINT(0);
-
-            }
-        }
+            if (index == -1)this.dispose(); 
+                else {
+                    MainApp.CC.setVisible(true);
+                    int line=0;
+                    for(int i=0;i<File.TABLE_LENGTH();i++){
+                        if(File.GET_DAY(i) == DAY && File.GET_MONTH(i)== MONTH &&
+                           File.GET_YEAR(i) == YEAR){
+                                       line = i;
+                                       break;
+                        }   
+                    }  
+                        CenterContent.SET_LINE(line + index);
+                        this.dispose();
+                        MainApp.REPAINT(0);
+                    }
+        }//If source
     }
+    
 }

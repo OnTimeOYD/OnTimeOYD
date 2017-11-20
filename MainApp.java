@@ -8,7 +8,7 @@ package OnTime;
 * Patryk Pogorzelczyk
 * 
 * Obecna wersja:
-* Ver. 0.0.0.4.5
+* Ver. 0.0.0.5
 */
 
 import javax.swing.JFrame;
@@ -22,38 +22,23 @@ public class MainApp extends JFrame {
     static CenterContent CC = new CenterContent();
     
     static int RUNNED_TIME = 0;
-    
-    
     static Toolkit TK = Toolkit.getDefaultToolkit();
     static Dimension SCREEN_SIZE = TK.getScreenSize();
     public float screenHeight = SCREEN_SIZE.height;
     public float screenWidth = SCREEN_SIZE.width;
-    
             
-    public MainApp() {
+    public MainApp(){
         super("OnTime - OYD");
         setLookAndFeel();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(15,3));
-        
-        JButton cButton = new JButton("Środek");
-        cButton.setEnabled(false);
  
         add(CC = new CenterContent(), BorderLayout.CENTER);
-        if(RUNNED_TIME == 0){
-            CC.setVisible(false);
-            
-        }
-        //CC.setMinimumSize(new Dimension(200,100));
+        if(RUNNED_TIME == 0)CC.setVisible(false);   
         add(new List(), BorderLayout.EAST);
-        
         add(new Calendar(), BorderLayout.WEST);
        
-        ////////////////////////////////////////////////////////////////////////
         setLocation((int)(screenWidth / 2.9), (int)(screenHeight / 3.8));
-        ////////////////////////////////////////////////////////////////////////
-        
-        
         MenuBar menu = new MenuBar();       
         setJMenuBar(menu.menubar);
         setResizable(false);
@@ -64,11 +49,9 @@ public class MainApp extends JFrame {
     
     public static void main(String[] arguments){
         mp = new MainApp();
-        mp.setMinimumSize(new Dimension(800, 500));
-        
+        mp.setMinimumSize(new Dimension(800, 500));     
     }
     
-
     public void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel(
@@ -80,22 +63,12 @@ public class MainApp extends JFrame {
                     + e.getMessage());
         }
     }
-
-    
-    public static int GET_SCREEN_HEIGHT(){
-        return SCREEN_SIZE.height;
-    }
-    public static int GET_SCREEN_WIDTH(){
-        return SCREEN_SIZE.width;
-    }
     
     public static void REPAINT(int change){
         mp.dispose();
         if(change==1) RUNNED_TIME = 0;
         else RUNNED_TIME++;
         mp = new MainApp();
-        mp.setMinimumSize(new Dimension(800, 500));
-        
+        mp.setMinimumSize(new Dimension(800, 500));  
     }
-
 }

@@ -14,10 +14,8 @@ public class File{
     static int i = 0;
     static StringTokenizer st,st_compare;
     
-    
     public static void READ_LINE(int lineNumber){
         
-
         st = new StringTokenizer(TABLE_WITH_FILE_DATA[lineNumber],"@@");
         
         if(st.hasMoreTokens()) YEAR = Integer.parseInt(st.nextToken());
@@ -27,11 +25,9 @@ public class File{
         if(st.hasMoreTokens()) MINUTE = Integer.parseInt(st.nextToken());
         if(st.hasMoreTokens()) TITLE = st.nextToken();
         if(st.hasMoreTokens()) CONTENT = st.nextToken();
-        else CONTENT = "";
-//        System.err.println(YEAR+"\t"+MONTH+"\t"+DAY+
-//                           "\t"+HOUR+"\t"+MINUTE+"\t"+TITLE+"\t"+CONTENT);
-        
+        else CONTENT = "";      
     }
+    
     public static int GET_DAY(int lineNumber){
         READ_LINE(lineNumber);
         return DAY;
@@ -60,6 +56,7 @@ public class File{
         READ_LINE(lineNumber);
         return CONTENT;
     }
+    
     public static int TABLE_LENGTH(){
         int length = 0;
         
@@ -71,18 +68,15 @@ public class File{
             else{
                 length++;
             }
-                
         }
-        
         return length;
     }
-    
-    
     
     public static void READ(String fileName){
         for(int i=0;i<TABLE_WITH_FILE_DATA.length;i++){
             TABLE_WITH_FILE_DATA[i] = "0";
         }
+        
         try{
             FR = new FileReader(fileName);
             BR = new BufferedReader(FR);
@@ -90,63 +84,33 @@ public class File{
             i = 0;
             line = BR.readLine();
             
-            /*
-            do{ 
-                line = BR.readLine();
-                TABLE_WITH_FILE_DATA[i] = line;
-                System.out.println(TABLE_WITH_FILE_DATA[i]);
-                i++;
-            }while(line != null);
-            */
-            
-            while(line != null){             
-                    
+            while(line != null){                          
                 if(line.equals("0")) {                    
                     line = BR.readLine();
                     continue; 
                 }
-
                 TABLE_WITH_FILE_DATA[i] = line;
                 line = BR.readLine();
-                //System.out.println(TABLE_WITH_FILE_DATA[i]);
                 i++;               
             }          
-            
+           
         } catch(IOException e){
             System.err.println(e.getMessage() + "ERROR File.READ");
         } finally { 
             try {
-                if(BR != null)
-                    BR.close();
-                if(FR != null)
-                    FR.close();
-            } catch(IOException e){
+                if(BR != null)BR.close();
+                if(FR != null)FR.close();
+            }catch(IOException e){
                System.err.println(e.getMessage() + "ERROR File.READ"); 
             }
-      }
-       
+      }   
     }
     
-    
-    ////////////////////////////////////////////////////////////////////////////
-     
-    
+  
     public static void SAVE(String text){
-        /*try(PrintWriter out = new PrintWriter("calendar.txt","UTF-8"))
-        {
-            out.println(text);
-            
-        } catch(IOException e) {
-            System.err.println(e.getMessage());
-        }
-        SORT();*/
-
-        try(FileWriter FW = new FileWriter("calendar.txt",true))
-        {
-            
+        try(FileWriter FW = new FileWriter("calendar.txt",true)){ 
             FW.write(text);
             FW.write(System.lineSeparator());
-    
             FW.close();
         } catch(IOException e) {
             System.err.println(e.getMessage());
@@ -169,23 +133,17 @@ public class File{
     }
 
     public static void SORT(){
-        //DELETE();
-        //Arrays.sort(TABLE_WITH_FILE_DATA);
-        //for(int i = 0; i< TABLE_LENGTH();i++){
-        //   System.err.println(TABLE_WITH_FILE_DATA[i]);
-        //}
-        //SAVE_TAB();
         int length = TABLE_LENGTH();
         int YearFirst, YearSecond, MonthFirst, MonthSecond, DayFirst,DaySecond,
                 HourFirst,HourSecond,MinuteFirst,MinuteSecond;
         String buffor;
+        
         for(int j=0;j<length*length;j++){
             for(int i =0; i < length;i++){
                 st = new StringTokenizer(TABLE_WITH_FILE_DATA[i],"@@");
                 if(i <= length-1) st_compare = new StringTokenizer(TABLE_WITH_FILE_DATA[i+1],"@@");
 
                 if(st.hasMoreTokens()){
-
                 YearFirst = Integer.parseInt(st.nextToken());
                 if(st_compare.hasMoreTokens()){ 
                 YearSecond = Integer.parseInt(st_compare.nextToken());
@@ -280,6 +238,5 @@ public class File{
         } catch (IOException e){
             System.err.println(e.getMessage());
         }
-        
     }
 }

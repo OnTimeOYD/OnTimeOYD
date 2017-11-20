@@ -23,28 +23,23 @@ public class License extends JFrame implements ActionListener {
         exit = new JButton("Exit");
         exit.addActionListener(this);
         
-        add(scroll,BorderLayout.CENTER);
-        add(exit, BorderLayout.SOUTH);
-        
-        
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension screenSize = tk.getScreenSize();
         float screenHeight = screenSize.height;
         float screenWidth = screenSize.width;
         setLocation((int)(screenWidth / 2.9), (int)(screenHeight / 3.8));
         
+        add(scroll,BorderLayout.CENTER);
+        add(exit, BorderLayout.SOUTH);
         setSize(800,700);
         setVisible(true);
     }
     
     public void actionPerformed(ActionEvent event){
         Object source = event.getSource();
-        if(source == exit){
-            this.setVisible(false);
-        }
+        if(source == exit) this.setVisible(false);
     }
     
-    //CAŁKOWICIE PRZYPADKOWA LICENCJA
-    
+    //CAŁKOWICIE PRZYPADKOWA LICENCJA   
    String licenseContent = "empty";
 }

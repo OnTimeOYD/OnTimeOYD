@@ -39,8 +39,7 @@ public class BugReport extends JFrame implements ActionListener{
         top.add(description);
         
         options = new JPanel();
-        //options.setLayout(new BoxLayout(options, BoxLayout.Y_AXIS));
-        
+                
         for(int i=0;i<option.length;i++){
             option[i] = new JCheckBox();
             
@@ -114,9 +113,6 @@ public class BugReport extends JFrame implements ActionListener{
        }
     }
 
-    private static String USER_NAME = "reportabug.ontime";
-    private static String PASSWORD = "OnTime123";
-    private static String TO = "OnTimeOYD@gmail.com";
     
     private static void sendFromGmail(String from, String pass, String[] to,
             String subject,String body){
@@ -158,5 +154,13 @@ public class BugReport extends JFrame implements ActionListener{
         catch (MessagingException me) {
             me.printStackTrace();
         }
-    }   
+    } 
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////
+    
+    
+    private static String USER_NAME = "reportabug.ontime";
+    private static String PASSWORD = "OnTime123";
+    private static String TO = "OnTimeOYD@gmail.com";
 }

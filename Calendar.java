@@ -356,9 +356,9 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         for(int i = 0; i < dayNumb.length;i++){
             if(source == dayNumb[i]){
                 if(i>=FirstIndex && block == 0  && !(dayNumb[i].getName().equals("Colored"))){
-                        NewFile.day = i - FirstIndex;
-                        NewFile.month = monthNumb;
-                        NewFile.year = YEAR-2017;
+                        NewFile.DAY = i - FirstIndex;
+                        NewFile.MONTH = monthNumb;
+                        NewFile.YEAR = YEAR-2017;
                         new NewFile();
                         block++;     
                 }
