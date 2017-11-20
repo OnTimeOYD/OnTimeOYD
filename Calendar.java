@@ -309,7 +309,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                             System.out.println(YEAR);*/
                             if(Editor.SAME_DATE_LIST_COUNTER(i-FirstIndex+1, monthNumb+1, YEAR) < 2){
                                 MainApp.CC.setVisible(true);
-                                CenterContent.SET_LINE(i);
+                                CenterContent.SET_LINE(j);
                                 MainApp.REPAINT(0);
                             } else new Editor(i-FirstIndex+1, monthNumb+1, YEAR);
                             block++;
