@@ -7,7 +7,7 @@ import java.awt.event.*;
 public class CenterContent extends JPanel implements ActionListener{
     public static int DAY=1, MONTH=1, YEAR=2017, HOUR=12, MINUTE=2;
     public static int LINE_NUMBER=0;
-    public String title, content = "Brak zawartości";
+    public static String TITLE, CONTENT = "Brak zawartości";
     static Integer[] DAYS = new Integer[31];
     static Integer[] MONTHS = new Integer[12];
     static Integer[] YEARS = new Integer[100];
@@ -22,10 +22,10 @@ public class CenterContent extends JPanel implements ActionListener{
     public CenterContent(){
         handler = new JPanel();
         handler.setLayout(new BoxLayout(handler,BoxLayout.Y_AXIS));
-        content = "Brak zawartości";
-        if(MainApp.RUNNED_TIME != 0) setDate(LINE_NUMBER);
+        CONTENT = "Brak zawartości";
+        if(MainApp.RUNNED_TIME != 0) SET_DATE(LINE_NUMBER);
         JPanel titlePanel = new JPanel(new GridLayout(1,1));
-        textTitle = new JTextField(title);
+        textTitle = new JTextField(TITLE);
         titlePanel.add(textTitle);
         
         ////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ public class CenterContent extends JPanel implements ActionListener{
         ////////////////////////////////////////////////////////////////////////
         JPanel contentPanel = new JPanel(new GridLayout());
 
-        textContent = new JTextArea(content,15,20);
+        textContent = new JTextArea(CONTENT,15,20);
         JScrollPane scroll = new JScrollPane(textContent);
         textContent.setFont(new Font("Arial",Font.PLAIN,15));
         textContent.setLineWrap(true);
@@ -135,15 +135,16 @@ public class CenterContent extends JPanel implements ActionListener{
         
         public static void SET_LINE(int lineNumber){
             LINE_NUMBER = lineNumber;
+            SET_DATE(lineNumber);
         }
-        public void setDate(int line){
+        public static void SET_DATE(int line){
             DAY = File.GET_DAY(line);
             MONTH = File.GET_MONTH(line);
             YEAR = File.GET_YEAR(line);
             HOUR = File.GET_HOUR(line);
             MINUTE = File.GET_MINUTE(line);
-            title = File.GET_TITLE(line);
-            content = File.GET_CONTENT(line);
+            TITLE = File.GET_TITLE(line);
+            CONTENT = File.GET_CONTENT(line);
         }
         
         
