@@ -10,7 +10,7 @@ public class Editor extends JFrame implements ActionListener{
     private static JList EDIT_LIST;
     private JLabel editLabel;
     private JButton chooseButton;
-    
+    static int DAY, MONTH, YEAR;
     
     static Toolkit TK = Toolkit.getDefaultToolkit();
     static Dimension SCREEN_SIZE = TK.getScreenSize();
@@ -46,6 +46,9 @@ public class Editor extends JFrame implements ActionListener{
     public Editor(int day, int month, int year){
         super("Edit event");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        DAY = day;
+        MONTH = month;
+        YEAR = year;
         editorPanel = new JPanel();
         editorPanel.setLayout(new BorderLayout());
         editLabel = new JLabel("Choose event:");
@@ -139,16 +142,24 @@ public class Editor extends JFrame implements ActionListener{
         Object source = event.getSource();
         
         if(source == chooseButton){
-            System.out.print(EDIT_LIST.getSelectedIndex());
+            //System.out.print(EDIT_LIST.getSelectedIndex());
             int index = EDIT_LIST.getSelectedIndex();
             if (index == -1){
                this.dispose(); 
             } else {
             MainApp.CC.setVisible(true);
-            CenterContent.SET_LINE(index);
-            this.setVisible(false);
-            MainApp.REPAINT(0);
+            int line=0;
+            for(int i=0;i<File.TABLE_LENGTH();i++){
+                if(File.GET_DAY(i) == DAY && File.GET_MONTH(i)== MONTH &&
+                                File.GET_YEAR(i) == YEAR){
+                               line = i;
+                               break;
+                }   
+            }  
+            CenterContent.SET_LINE(line + index);
             this.dispose();
+            MainApp.REPAINT(0);
+
             }
         }
     }
