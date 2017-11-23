@@ -79,7 +79,7 @@ public class List extends JPanel implements MouseListener,ItemListener{
         Object source = event.getSource();
         int length = File.TABLE_LENGTH();
         for(int i=0;i<12 && i<length;i++)
-           if(source == line[i])line[i].setBackground(new Color(165,172,182));       
+        if(source == line[i])line[i].setBackground(new Color(165,172,182));       
     }
     public void mouseExited(MouseEvent event){
         Object source = event.getSource();

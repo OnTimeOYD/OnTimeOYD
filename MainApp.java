@@ -19,7 +19,7 @@ import java.awt.*;
 public class MainApp extends JFrame {
     static MainApp mp;
     static CenterContent CC = new CenterContent();
-    
+    static ListControlVersion LCV;
     static int RUNNED_TIME = 0;
     static Toolkit TK = Toolkit.getDefaultToolkit();
     static Dimension SCREEN_SIZE = TK.getScreenSize();
@@ -34,7 +34,7 @@ public class MainApp extends JFrame {
  
         add(CC = new CenterContent(), BorderLayout.CENTER);
         if(RUNNED_TIME == 0)CC.setVisible(false);   
-        add(new List(), BorderLayout.EAST);
+        add(LCV = new ListControlVersion(), BorderLayout.EAST);
         add(new Calendar(), BorderLayout.WEST);
        
         setLocation((int)(screenWidth / 2.9), (int)(screenHeight / 3.8));
