@@ -12,7 +12,6 @@ package OnTime;
 */
 
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.SwingUtilities;
 import java.awt.*;

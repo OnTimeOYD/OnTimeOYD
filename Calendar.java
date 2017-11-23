@@ -219,29 +219,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
              }
              return dayToReturn;
         
-    }
-    
-//     enum months{
-//        JANUARY(0),
-//        FEBRUARY(31),
-//        MARCH(59),
-//        APRLI(90),
-//        MAY(120),
-//        JUNE(151),
-//        JULY(181),
-//        AUGUST(212),
-//        SEPTEMBER(243),
-//        OCTOBER(273),
-//        NOVEMBER(304),
-//        DECEMBER(334);
-//        private int number;
-//          
-//         private months(int number) {
-//             this.number = number;
-//          }
-//      }
-     
-     
+    }     
 
     public static int GET_LAST_INDEX(int FirstIndex, int numbOfDays){
         int LastIndex = 0;
@@ -265,7 +243,6 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             dates[i].setHours(File.GET_HOUR(i));
             dates[i].setMinutes(File.GET_MINUTE(i));
             dates[i].setSeconds(0);           
-            //System.out.println(dates[i]);
         }
     }
     public boolean makeDatesColorfull(int Day,int Month, int Year){
@@ -301,12 +278,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             if(source == dayNumb[i] && dayNumb[i].getName().equals("Colored")){
                 for(int j = 0; j < dayNumb.length;j++){  
                         if(block == 0 && File.GET_DAY(j)-1 == i-FirstIndex && File.GET_MONTH(j)-1== monthNumb&&
-                                File.GET_YEAR(j) == YEAR){/*
-                            
-                            */
-                            /*System.out.println(i-FirstIndex);
-                            System.out.println(monthNumb);
-                            System.out.println(YEAR);*/
+                                File.GET_YEAR(j) == YEAR){
                             if(Editor.SAME_DATE_LIST_COUNTER(i-FirstIndex+1, monthNumb+1, YEAR) < 2){
                                 MainApp.CC.setVisible(true);
                                 CenterContent.SET_LINE(j);
@@ -421,9 +393,6 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             
             monthName.setText(EngMonthName[monthNumb]);
             }
-//            if(monthNumb >= 1){
-//                leftMonth.setEnabled(true);
-//            }
             if(monthNumb >= 1){
                 leftMonth.setEnabled(true);
             }
