@@ -1,6 +1,5 @@
 package OnTime;
 
-import static OnTime.MainApp.mp;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -83,6 +82,7 @@ public class Register extends JFrame implements ActionListener{
         holder.add(buttonJPanel);
         
         add(holder);
+        setResizable(false);
         setLookAndFeel();
         setLocation((int)(screenWidth / 2.25), (int)(screenHeight / 2.5));
         setMinimumSize(new Dimension(300, 10));

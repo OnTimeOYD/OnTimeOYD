@@ -1,10 +1,6 @@
 package OnTime;
 
 import java.sql.*;
-import java.util.*;
-import java.nio.file.*;
-import java.security.MessageDigest;
-import javax.xml.bind.DatatypeConverter;
 
 public class ConnectionTEST{
 

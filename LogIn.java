@@ -62,6 +62,7 @@ public class LogIn extends JFrame implements ActionListener{
         holder.add(buttonJPanel);
         add(holder);
         setLookAndFeel();
+        setResizable(false);
         setLocation((int)(screenWidth / 2.2), (int)(screenHeight / 2.5));
         pack();
         setVisible(true);
