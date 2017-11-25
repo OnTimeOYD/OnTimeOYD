@@ -32,7 +32,7 @@ public class Register extends JFrame implements ActionListener{
     
     public Register(){
         super("Register");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         holder = new JPanel();
         holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
         
@@ -98,7 +98,7 @@ public class Register extends JFrame implements ActionListener{
             passConfHash = DataBase.GET_HASH(passwordConfField.getText().getBytes(), "SHA-512");
             
             if(passHash.equals(passConfHash)){
-                DataBase.ADD_STATEMENT(username.getText(), nameJText.getText(),
+                DataBase.ADD_STATEMENT(usernameJText.getText(), nameJText.getText(),
                         surnJText.getText(), "USERS", passConfHash);
                 this.dispose();
                 new LogIn();
