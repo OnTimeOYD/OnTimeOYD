@@ -93,16 +93,25 @@ public class Register extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
         if(source == confirm){
-            DataBase db = new DataBase();
-            passHash = DataBase.GET_HASH(passwordField.getText().getBytes(), "SHA-512");
             passConfHash = DataBase.GET_HASH(passwordConfField.getText().getBytes(), "SHA-512");
+            if(!(usernameJText.getText().equals(null)||
+                usernameJText.getText().equals("")||
+                passwordField.getText().equals(null)||
+                passwordField.getText().equals("")||
+                nameJText.getText().equals(null) ||
+                nameJText.getText().equals("") ||
+                surnJText.getText().equals(null) ||   
+                surnJText.getText().equals(""))){
+                    DataBase db = new DataBase();
+                    passHash = DataBase.GET_HASH(passwordField.getText().getBytes(), "SHA-512");
+                    if(passHash.equals(passConfHash)){
+                        DataBase.ADD_STATEMENT(usernameJText.getText(), nameJText.getText(),
+                                surnJText.getText(), "USERS", passConfHash);
+                        this.dispose();
+                        new LogIn();
+                    }
+            }
             
-            if(passHash.equals(passConfHash)){
-                DataBase.ADD_STATEMENT(usernameJText.getText(), nameJText.getText(),
-                        surnJText.getText(), "USERS", passConfHash);
-                this.dispose();
-                new LogIn();
-            }        
         }
         if(source == cancel){
             System.exit(0);
