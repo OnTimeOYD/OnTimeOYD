@@ -86,7 +86,8 @@ public class LogIn extends JFrame implements ActionListener{
             }
         }
         if(source == register){
-            
+            this.dispose();
+            new Register();
         }
     }
     
