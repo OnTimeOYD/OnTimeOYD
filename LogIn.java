@@ -31,7 +31,7 @@ public class LogIn extends JFrame implements ActionListener{
     
     public LogIn(){
         super("Log In");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         holder = new JPanel();
         holder.setLayout(new BoxLayout(holder, BoxLayout.Y_AXIS));
         nameJPanel = new JPanel();
