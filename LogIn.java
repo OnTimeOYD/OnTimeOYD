@@ -70,19 +70,22 @@ public class LogIn extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
         if(source == logIn){
-            DataBase db = new DataBase();
-            usernameString = name.getText();
-            passString = DataBase.GET_HASH(password.getText().getBytes(), "SHA-512");
-            DataBase.SELECT_STATEMENT("SELECT * FROM USERS WHERE username='"+usernameString+"'");
-            correctPass = DataBase.PASSWORD;
-//            System.err.println(passString);
-//            System.err.println(correctPass);
-            if(correctPass.equals(passString)){
-                System.out.println("CONNECTED!");
-                mp = new MainApp();
-                mp.setMinimumSize(new Dimension(800, 500)); 
-            }else{
-                System.out.println("ERROR!");
+            if(!(name.getText().equals(null) || name.getText().equals("") ||
+                    password.getText().equals(null) || password.getText().equals(""))){
+                DataBase db = new DataBase();
+                usernameString = name.getText();
+                passString = DataBase.GET_HASH(password.getText().getBytes(), "SHA-512");
+                DataBase.SELECT_STATEMENT("SELECT * FROM USERS WHERE username='"+usernameString+"'");
+                correctPass = DataBase.PASSWORD;
+    //            System.err.println(passString);
+    //            System.err.println(correctPass);
+                if(correctPass.equals(passString)){
+                    System.out.println("CONNECTED!");
+                    mp = new MainApp();
+                    mp.setMinimumSize(new Dimension(800, 500)); 
+                }else{
+                    System.out.println("ERROR!");
+                }
             }
         }
         if(source == register){
