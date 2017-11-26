@@ -113,7 +113,7 @@ public class NewFile extends JFrame implements ActionListener{
  
             this.dispose();
             File.SAVE_TAB();
-            MainApp.LCV = new ListControlVersion();
+            //MainApp.LCV = new ListControlVersion();
             MainApp.REPAINT(1);
         }
         if(source == exit)this.dispose();

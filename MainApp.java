@@ -8,7 +8,7 @@ package OnTime;
 * Patryk Pogorzelczyk
 * 
 * Obecna wersja:
-* Ver. 0.0.0.6
+* Ver. 0.0.0.7
 */
 
 import javax.swing.JFrame;
@@ -29,12 +29,12 @@ public class MainApp extends JFrame {
     public MainApp(){
         super("OnTime - OYD");
         setLookAndFeel();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout(15,3));
  
         add(CC = new CenterContent(), BorderLayout.CENTER);
         if(RUNNED_TIME == 0)CC.setVisible(false);   
-        add(LCV = new ListControlVersion(), BorderLayout.EAST);
+        add(new List(), BorderLayout.EAST);
         add(new Calendar(), BorderLayout.WEST);
        
         setLocation((int)(screenWidth / 2.9), (int)(screenHeight / 3.8));
@@ -42,7 +42,7 @@ public class MainApp extends JFrame {
         setJMenuBar(menu.menubar);
         setResizable(false);
         pack();
-        
+        setMinimumSize(new Dimension(800, 500)); 
         setVisible(true);
     }
     

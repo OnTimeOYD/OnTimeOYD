@@ -52,7 +52,7 @@ public class Register extends JFrame implements ActionListener{
         passwordJPanel.add(passwordField);
         passwordJPanel.add(passwordConfirm);
         passwordJPanel.add(passwordConfField);
-        
+
         nameJPanel = new JPanel();
         nameJPanel.setLayout(new BoxLayout(nameJPanel, BoxLayout.Y_AXIS));
         name = new JLabel("Name:");

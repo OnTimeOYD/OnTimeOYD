@@ -1,8 +1,6 @@
 package OnTime;
 
 import java.sql.*;
-import java.util.*;
-import java.nio.file.*;
 import java.security.MessageDigest;
 import javax.xml.bind.DatatypeConverter;
 
@@ -19,17 +17,17 @@ public class DataBase{
     static ResultSet result;
     static String USER, PASSWORD;
     
-    public static void main(String[] args){    
+   /* public static void main(String[] args){    
         try{
             conn = DriverManager.getConnection(ADRESS, USERNAME_DB, PASSWORD_DB);
-            System.out.println("Connected!");
-            ADD_STATEMENT("TEST","TEST","TEST","USERS",GET_HASH("TEST".getBytes(),"SHA-512"));
+            //System.out.println("Connected!");
+            //ADD_STATEMENT("TEST","TEST","TEST","USERS",GET_HASH("TEST".getBytes(),"SHA-512"));
            // System.out.println(GET_HASH("TEST".getBytes(),"SHA-512"));
             //SELECT_STATEMENT("USERS", "*");
         }catch(SQLException e){
             System.err.println(e.getMessage());
         }
-    }
+    }*/
     
     public DataBase(){
         try{
