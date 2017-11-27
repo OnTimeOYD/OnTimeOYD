@@ -1,8 +1,8 @@
 package OnTime;
 
 import java.sql.*;
-import java.security.MessageDigest;
-import javax.xml.bind.DatatypeConverter;
+import java.security.*;
+import javax.xml.bind.*;
 
 public class DataBase{
 
@@ -16,22 +16,13 @@ public class DataBase{
     static String STATEMENT_SELECT = null;
     static ResultSet result;
     static String USER, PASSWORD;
-    
-   /* public static void main(String[] args){    
-        try{
-            conn = DriverManager.getConnection(ADRESS, USERNAME_DB, PASSWORD_DB);
-            //System.out.println("Connected!");
-            //ADD_STATEMENT("TEST","TEST","TEST","USERS",GET_HASH("TEST".getBytes(),"SHA-512"));
-           // System.out.println(GET_HASH("TEST".getBytes(),"SHA-512"));
-            //SELECT_STATEMENT("USERS", "*");
-        }catch(SQLException e){
-            System.err.println(e.getMessage());
-        }
-    }*/
+  
     
     public DataBase(){
         try{
         conn = DriverManager.getConnection(ADRESS, USERNAME_DB, PASSWORD_DB);
+
+        //AlertClass.INFO_BOX("CONNECTED", "CONNECTED");
         //System.out.println("Connected!");
         }catch(SQLException e){
             System.err.println(e.getMessage());
@@ -80,18 +71,21 @@ public class DataBase{
         }
     }
     //MD2,MD5,SHA-1,SHA-224,SHA-256,SHA-384,SHA-512
-    public static String GET_HASH(byte [] inputBytes, String algorithm){
-        String hashValue = "";
-        
-        try{
-            MessageDigest messageDigest = MessageDigest.getInstance(algorithm);
-            messageDigest.update(inputBytes);
-            byte[] digestedBytes = messageDigest.digest();
-            hashValue = DatatypeConverter.printHexBinary(digestedBytes).toLowerCase();
-        } catch(Exception e){
-            
-        }      
-        return hashValue;
-    }
+ public static String get_SHA_512_SecurePassword(String passwordToHash){
+String generatedPassword = null;
+    try {
+         MessageDigest md = MessageDigest.getInstance("SHA-512");
+         byte[] bytes = md.digest(passwordToHash.getBytes("UTF-8"));
+         StringBuilder sb = new StringBuilder();
+         for(int i=0; i< bytes.length ;i++){
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+         }
+         generatedPassword = sb.toString();
+        } 
+       catch (Exception e){
+        e.printStackTrace();
+       }
+    return generatedPassword;
+}
 
 }

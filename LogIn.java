@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.MessageDigest;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.xml.bind.DatatypeConverter;
 
 
 public class LogIn extends JFrame implements ActionListener{
@@ -71,30 +73,52 @@ public class LogIn extends JFrame implements ActionListener{
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
         if(source == logIn){
+            
             if(!(name.getText().equals(null) || name.getText().equals("") ||
                     password.getText().equals(null) || password.getText().equals(""))){
+                
                 DataBase db = new DataBase();
                 usernameString = name.getText();
-                passString = DataBase.GET_HASH(password.getText().getBytes(), "SHA-512");
+                passString = get_SHA_512_SecurePassword(password.getText());
                 DataBase.SELECT_STATEMENT("SELECT * FROM USERS WHERE username='"+usernameString+"'");
                 correctPass = DataBase.PASSWORD;
                 if(correctPass.equals(passString)){
                     this.dispose();
-                    System.out.println("CONNECTED!");
+                    //System.out.println("CONNECTED!");
                     mp = new MainApp();
                     mp.setMinimumSize(new Dimension(800, 500)); 
                     alert = new AlertClass();
                     new DisplayTrayIcon();
                 }else{
+                    AlertClass.INFO_BOX("WRONG LOGIN/PASSWORD", "ERROR");
                     System.out.println("ERROR!");
                 }
-            }
+            }else{
+                    AlertClass.INFO_BOX("WRONG LOGIN/PASSWORD", "ERROR");
+                    System.out.println("ERROR!");}
         }
         if(source == register){
             this.dispose();
             new Register();
         }
     }
+
+public String get_SHA_512_SecurePassword(String passwordToHash){
+String generatedPassword = null;
+    try {
+         MessageDigest md = MessageDigest.getInstance("SHA-512");
+         byte[] bytes = md.digest(passwordToHash.getBytes("UTF-8"));
+         StringBuilder sb = new StringBuilder();
+         for(int i=0; i< bytes.length ;i++){
+            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+         }
+         generatedPassword = sb.toString();
+        } 
+       catch (Exception e){
+        e.printStackTrace();
+       }
+    return generatedPassword;
+}
     
     public void setLookAndFeel() {
         try {

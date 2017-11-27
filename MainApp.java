@@ -69,6 +69,5 @@ public class MainApp extends JFrame {
         if(change==1) RUNNED_TIME = 0;
         else RUNNED_TIME++;
         mp = new MainApp();
-        mp.setMinimumSize(new Dimension(800, 500));  
     }
 }

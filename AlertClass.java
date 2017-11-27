@@ -1,14 +1,9 @@
 package OnTime;
 
 
-import java.awt.event.FocusAdapter;
-import java.io.IOException;
 import java.util.Date;
 import javax.swing.*;
-import java.io.*;
 import java.util.concurrent.TimeUnit;
-import jdk.nashorn.internal.codegen.CompilerConstants;
-import sun.management.snmp.jvminstr.JvmThreadInstanceEntryImpl;
 
 public class AlertClass extends JFrame{
     static Date DATE;
