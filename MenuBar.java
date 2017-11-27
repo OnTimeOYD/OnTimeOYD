@@ -8,7 +8,7 @@ public class MenuBar extends JPanel implements ActionListener,MouseListener{
      JMenuBar menubar = new JMenuBar();
      JMenuItem neew,edit,load,save,share,delete,
                style,options,instruction,license,
-               authors;
+               authors,exit;
      JMenu bug;
      ImageIcon newFile = new ImageIcon("new.gif");
      ImageIcon shareFile = new ImageIcon("share.gif");  
@@ -19,18 +19,23 @@ public class MenuBar extends JPanel implements ActionListener,MouseListener{
        JMenu file = new JMenu("File");
        neew = new JMenuItem("New", newFile);
        edit = new JMenuItem("Edit",editFile);
+       exit = new JMenuItem("Exit");
        edit.setAccelerator(KeyStroke.getKeyStroke
         ('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
        neew.setAccelerator(KeyStroke.getKeyStroke
         ('N', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));  
+       exit.setAccelerator(KeyStroke.getKeyStroke
+        ('Q', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask())); 
        share = new JMenuItem("Share",shareFile);
       
        neew.addActionListener(this);
        edit.addActionListener(this);
+       exit.addActionListener(this);
        file.add(neew);
        file.add(edit);
        file.addSeparator();
        file.add(share);
+       file.add(exit);
        /////////////////////////////////////////////
        JMenu tools = new JMenu("Tools");
        style = new JMenuItem("Style");
@@ -81,6 +86,7 @@ public class MenuBar extends JPanel implements ActionListener,MouseListener{
         if(source == authors)new Authors();
         if(source == license)new License();
         if(source == instruction)new Instruction();
+        if(source == exit) System.exit(0);
     }
     
     public void mouseClicked(MouseEvent event){
