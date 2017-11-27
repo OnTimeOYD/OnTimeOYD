@@ -8,7 +8,7 @@ public class DataBase{
 
     static String ADRESS="jdbc:mysql://217.61.1.61:3306/miki_OnTimeOYD";
     private static String USERNAME_DB = "miki_root";
-    private static String PASSWORD_DB = "MikiPati123";
+    private static String PASSWORD_DB = "**";
     static Connection conn = null;
     static Statement ADD = null;
     static Statement SELECT = null;
