@@ -83,17 +83,12 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         setVisible(true);
     }
     
-    public int getFirstIndexOfMonth(int Month){
-        int indexToReturn = 0 ;
-        
-        return indexToReturn;
-    }
 ////////////////////////////////////////////////////////////////////////////////    
     public void writeCalendar(int Month, int Year,int Prev){
         int dayNum = 1;
         numbOfDays = GET_NUMB_OF_DAYS(Month,Year); 
         FirstIndex = GET_FIRST_INDEX(Month,Year,lastIndex);
-        lastIndex = GET_LAST_INDEX(FirstIndex,numbOfDays);
+        
         
         
        // System.out.println(lastIndex);
@@ -131,9 +126,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                     if(dayNum-1 == TODAY.getDate() && Month == TODAY.getMonth()-1 && Year==TODAY.getYear()+1900){
                         dayNumb[i].setOpaque(true);
                         dayNumb[i].setBackground(new Color(165,172,182)); 
-                        dayNumb[i].setName("Today");
-                        
-                        
+                        dayNumb[i].setName("Today");    
                     }
                     
                 } else {
@@ -198,26 +191,36 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         return DayNumb;
     }
     
+    
     public static int GET_FIRST_INDEX(int Month, int Year,int Last){
-        int FirstIndex = 6;
-        if(Month == 1 && Year == 2017) FirstIndex = 6;
-        else if(Month == 1 && Year != 2017){
-            if(LEAP_YEAR(Year-1)){
-                FirstIndex = (Last+335)%7;
-                return FirstIndex;
-            }
-            else{
-                FirstIndex = (Last+334)%7;
-                return FirstIndex;
-            }
-        }else{
-            FirstIndex = Last;
-            return FirstIndex;
-        }
+            int YY = (Year-1)%100;//16
+            int C = (Year-1) - YY;//2000
+            int G = YY + (YY/4);//20
+            int day = (((((C/100)%4)*5)+G)%7);//20/7
+            int dayToReturn;
+            
+            Integer[] mo = new Integer[12];
+                mo[0] = 0;
+                mo[1] = 31;
+                mo[2] = 59;
+                mo[3] = 90;
+                mo[4] = 120;
+                mo[5] = 151;
+                mo[6] = 181;
+                mo[7] = 212;
+                mo[8] = 243;
+                mo[9] = 273;
+                mo[10] = 304;
+                mo[11] = 334;
+                    
+             dayToReturn  = (day + mo[Month-1])%7;
+             if(LEAP_YEAR(Year) && Month > 2){
+                dayToReturn++;
+             }
+             return dayToReturn;
         
-        return FirstIndex;
-        
-    }
+    }     
+
     public static int GET_LAST_INDEX(int FirstIndex, int numbOfDays){
         int LastIndex = 0;
         LastIndex = (FirstIndex + numbOfDays)%7;
@@ -240,7 +243,6 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             dates[i].setHours(File.GET_HOUR(i));
             dates[i].setMinutes(File.GET_MINUTE(i));
             dates[i].setSeconds(0);           
-            //System.out.println(dates[i]);
         }
     }
     public boolean makeDatesColorfull(int Day,int Month, int Year){
@@ -277,10 +279,12 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                 for(int j = 0; j < dayNumb.length;j++){  
                         if(block == 0 && File.GET_DAY(j)-1 == i-FirstIndex && File.GET_MONTH(j)-1== monthNumb&&
                                 File.GET_YEAR(j) == YEAR){
+                            if(Editor.SAME_DATE_LIST_COUNTER(i-FirstIndex+1, monthNumb+1, YEAR) < 2){
+                                MainApp.CC.setVisible(true);
+                                CenterContent.SET_LINE(j);
+                                MainApp.REPAINT(0);
+                            } else new Editor(i-FirstIndex+1, monthNumb+1, YEAR);
                             block++;
-                            MainApp.CC.setVisible(true);
-                            CenterContent.SET_LINE(j);
-                            MainApp.REPAINT(0);
                         }   
                 }
             }
@@ -314,7 +318,7 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
                     dayNumb[i].setBackground(null);
                     dayNumb[i].setForeground(null);
                     }
-
+                dayNumb[i].setCursor(null);
                 }
                 
             }
@@ -324,9 +328,9 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
         for(int i = 0; i < dayNumb.length;i++){
             if(source == dayNumb[i]){
                 if(i>=FirstIndex && block == 0  && !(dayNumb[i].getName().equals("Colored"))){
-                        NewFile.day = i - FirstIndex;
-                        NewFile.month = monthNumb;
-                        NewFile.year = YEAR-2017;
+                        NewFile.DAY = i - FirstIndex;
+                        NewFile.MONTH = monthNumb;
+                        NewFile.YEAR = YEAR-2017;
                         new NewFile();
                         block++;     
                 }
@@ -389,9 +393,6 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             
             monthName.setText(EngMonthName[monthNumb]);
             }
-//            if(monthNumb >= 1){
-//                leftMonth.setEnabled(true);
-//            }
             if(monthNumb >= 1){
                 leftMonth.setEnabled(true);
             }
@@ -410,11 +411,6 @@ public class Calendar extends JPanel implements ActionListener,MouseListener{
             getDates();            
             writeCalendar(monthNumb+1,YEAR,YEAR);
         }
-        
-        
-        
-        
-        
-        //sfloi;htdzsoi;
+
     }
 }

@@ -15,7 +15,7 @@ public class NewFile extends JFrame implements ActionListener{
     Integer[] years = new Integer[100];
     Integer[] hours = new Integer[24];
     Integer[] minutes = new Integer[60];
-    static int day=0,month=0,year=0;
+    static int DAY=0,MONTH=0,YEAR=0;
     
     public NewFile(){
         super("Add new event");
@@ -34,26 +34,18 @@ public class NewFile extends JFrame implements ActionListener{
         titleLine.add(textTitle);
         ////////////////////////////////////////////////////////////////////////
         for(int i=1;i<=years.length;i++){
-            if(i<=31){
-                days[i-1] = i; 
-            }
-            if(i<=12){
-                months[i-1] = i;
-            }
+            if(i<=31)days[i-1] = i; 
+            if(i<=12)months[i-1] = i;
             years[i-1] = 2016+i;
-            if(i<=24){
-                hours[i-1] = i-1;
-            }
-            if(i<=60){
-                minutes[i-1] = i-1;
-            }
+            if(i<=24)hours[i-1] = i-1;
+            if(i<=60)minutes[i-1] = i-1;
         }
         dayDate = new JComboBox(days);
-        dayDate.setSelectedIndex(day);
+        dayDate.setSelectedIndex(DAY);
         monthDate = new JComboBox(months);
-        monthDate.setSelectedIndex(month);
+        monthDate.setSelectedIndex(MONTH);
         yearDate = new JComboBox(years);
-        yearDate.setSelectedIndex(year);
+        yearDate.setSelectedIndex(YEAR);
         hourDate = new JComboBox(hours);
         minuteDate = new JComboBox(minutes);
         
@@ -74,7 +66,6 @@ public class NewFile extends JFrame implements ActionListener{
         JPanel contentLine = new JPanel();
         content = new JLabel("Content: ");
         textContent = new JTextArea(5,15);
-        
         contentLine.add(content);
         contentLine.add(textContent);
         ////////////////////////////////////////////////////////////////////////
@@ -93,7 +84,6 @@ public class NewFile extends JFrame implements ActionListener{
         add(timeLine);
         add(contentLine);
         add(buttonLine);
-        
         setSize(300,400);
         ////////////////////////////////////////////////////////////////////////
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -106,8 +96,7 @@ public class NewFile extends JFrame implements ActionListener{
         setVisible(true);
         
     }
-    
-    
+      
     public void actionPerformed(ActionEvent event){
         Object source = event.getSource();
         
@@ -121,15 +110,12 @@ public class NewFile extends JFrame implements ActionListener{
                       "@@"+textTitle.getText()+
                       "@@"+textContent.getText()+
                       "@@";
-
+ 
             this.dispose();
             File.SAVE_TAB();
+            //MainApp.LCV = new ListControlVersion();
             MainApp.REPAINT(1);
-                        
         }
-        if(source == exit){
-            //MainApp.REPAINT(1);
-            this.dispose();
-        }
+        if(source == exit)this.dispose();
     }
 }
