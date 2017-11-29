@@ -7,7 +7,7 @@ import javax.xml.bind.*;
 public class DataBase{
 
     static String ADRESS="jdbc:mysql://217.61.1.61:3306/miki_OnTimeOYD";
-    private static String USERNAME_DB = "miki_root";
+    private static String USERNAME_DB = "**";
     private static String PASSWORD_DB = "**";
     static Connection conn = null;
     static Statement ADD = null;
